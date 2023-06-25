@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="source\Application">
+      <UniqueIdentifier>{99a84c11-06de-4ec3-b42d-f157ce3f07b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Math">
+      <UniqueIdentifier>{adb50178-8503-4cd3-aa02-1f3d5bc8a761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Base">
+      <UniqueIdentifier>{2404f6f2-a7e2-4d8a-97b4-103e30fc1658}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Application\ApplicationBase.h">
+      <Filter>source\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Base\GameBase.h">
+      <Filter>source\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Base\GameServerShared.h">
+      <Filter>source\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Base\GameServerUnique.h">
+      <Filter>source\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\DxMyMathUtility.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\MyMath.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\Matrix44.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\Polar3D.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\MyMathUtility.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\Vector4.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Application\InputManager.h">
+      <Filter>source\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MyMath\Easing.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AppFrame.h">
+      <Filter>source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Application\WinMain.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Application\ApplicationBase.cpp">
+      <Filter>source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Base\GameBase.cpp">
+      <Filter>source\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Base\GameServerShared.cpp">
+      <Filter>source\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Base\GameServerUnique.cpp">
+      <Filter>source\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\DxMyMathUtility.cpp">
+      <Filter>source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\Matrix44.cpp">
+      <Filter>source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\Polar3D.cpp">
+      <Filter>source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\MyMathUtility.cpp">
+      <Filter>source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\Vector4.cpp">
+      <Filter>source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Application\InputManager.cpp">
+      <Filter>source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\Easing.cpp">
+      <Filter>source\Math</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

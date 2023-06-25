@@ -1,0 +1,67 @@
+/*****************************************************************//**
+ * \file   ApplicationBase.h
+ * \brief  アプリフレームの基底クラスの定義
+ * \author 阿部健太郎
+ * \date   June 2023
+ *********************************************************************/
+#pragma once
+#include "Dxlib.h"
+#include <memory>
+#include "../Base/GameBase.h"
+#include "../Base/GameServerShared.h"
+#include "InputManager.h"
+
+class ApplicationBase
+{
+public:
+  /** コンストラクタ */
+  ApplicationBase();
+  /** デストラクタ */
+  virtual ~ApplicationBase();
+  /** 初期化関数 */
+  virtual bool Initialize();
+  /** 終了関数 */
+  virtual bool Terminate();
+  /** インプットのアップデート関数 */
+  virtual bool Input();
+  /** ゲームのアップデート関数 */
+  virtual bool Update();
+  /** 描画関数 */
+  virtual bool Draw();
+  /** ウィンドウを開いていいか確認する関数 */
+  virtual bool AppWindowed();
+  /** ディスプレイ横の画素数を指定する関数 */
+  virtual int DispSizeW();
+  /** ディスプレイ縦画素数を指定する関数 */
+  virtual int DispSizeH();
+  /** 静的インスタンスをゲット関数 */
+  static ApplicationBase* GetInstance()
+  {
+    return lp_Instance;
+  }
+  /** ゲームモード管理クラス取得 */
+  std::shared_ptr<GameServerShared<GameBase>> GetModeServer()
+  {
+    return base_server;
+  }
+
+  /** 入力取得 */
+  const InputManager& GetInput()
+  {
+    return input;
+  }
+  /** ゲームを終わらせるときに呼ぶ関数 */
+  void IsGameEnd()
+  {
+    is_game_end = true;
+  }
+protected:
+  /** このクラスはアプリケーションクラスの基底クラスなのでインスタンスをstaticにしあとで上書きされるようにする */
+  static ApplicationBase* lp_Instance;
+  /** オブジェクト追加管理するクラスのインスタンス */
+  std::shared_ptr<GameServerShared<GameBase>> base_server;
+  /** inputクラスインスタス */
+  InputManager input;
+  /** ゲームが終わるときtrue */
+  bool is_game_end;
+};
