@@ -5,6 +5,7 @@
  * \date   June 2023
  *********************************************************************/
 #include "Polar3D.h"
+#include "Vector4.h"
 #include <cmath>
 namespace mymath
 {

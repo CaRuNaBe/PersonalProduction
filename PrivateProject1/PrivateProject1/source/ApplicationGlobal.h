@@ -16,5 +16,5 @@ public:
   bool Initialize();
 private:
 };
-/** 他のソースでgGlobalを使えるように */
-extern ApplicationGlobal gGlobal;
+/** 他のソースでgglobalを使えるように */
+extern ApplicationGlobal global;

@@ -5,11 +5,19 @@
  * \date   June 2023
  *********************************************************************/
 #pragma once
-#include "Dxlib.h"
+
 #include <memory>
 #include "../Base/GameBase.h"
 #include "../Base/GameServerShared.h"
 #include "InputManager.h"
+ // カメラ
+class Camera
+{
+public:
+  VECTOR _vPos;// 位置
+  VECTOR _vTarget; // 距離
+  float _clipNear,_clipFar;// クリップ
+};
 
 class ApplicationBase
 {
@@ -34,10 +42,14 @@ public:
   virtual int DispSizeW();
   /** ディスプレイ縦画素数を指定する関数 */
   virtual int DispSizeH();
+  /** delta_timeとfpsの計測関数 */
+  void DeltaTimeAndFpsMeasure();
+  /** リフレッシュレートを文字描画 */
+  void FpsDraw();
   /** 静的インスタンスをゲット関数 */
   static ApplicationBase* GetInstance()
   {
-    return lp_Instance;
+    return lp_instance;
   }
   /** ゲームモード管理クラス取得 */
   std::shared_ptr<GameServerShared<GameBase>> GetModeServer()
@@ -57,11 +69,16 @@ public:
   }
 protected:
   /** このクラスはアプリケーションクラスの基底クラスなのでインスタンスをstaticにしあとで上書きされるようにする */
-  static ApplicationBase* lp_Instance;
+  static ApplicationBase* lp_instance;
   /** オブジェクト追加管理するクラスのインスタンス */
   std::shared_ptr<GameServerShared<GameBase>> base_server;
   /** inputクラスインスタス */
   InputManager input;
   /** ゲームが終わるときtrue */
   bool is_game_end;
+  /** 可変フレームレート前回のフレームから何秒立ったか */
+  float delta_time;
+  // カメラ
+  Camera _cam;
+
 };

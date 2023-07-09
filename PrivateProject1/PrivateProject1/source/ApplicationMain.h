@@ -5,9 +5,9 @@
  * \author ˆ¢•”Œ’‘¾˜Y
  * \date   June 2023
  *********************************************************************/
-#include <memory>
 #include "AppFrame.h"
-#include <Dxlib.h>
+
+
 
 class ApplicationMain : public ApplicationBase
 {
@@ -30,4 +30,5 @@ public:
   virtual int DispSizeH();
 
 private:
+
 };

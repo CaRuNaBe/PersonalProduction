@@ -1,8 +1,10 @@
 #include "AppFrame.h"
 #include "ApplicationMain.h"
 #include "ApplicationGlobal.h"
+#include "GameStage.h"
+#include "SkySphere.h"
 // À‘Ì
-ApplicationMain g_oApplicationMain;
+ApplicationMain g_oapplicationmain;
 
 bool ApplicationMain::Initialize()
 {
@@ -12,7 +14,12 @@ bool ApplicationMain::Initialize()
     return false;
   }
   /** ‚±‚ÌƒQ[ƒ€‚Ì‰Šú‰» */
-  gGlobal.Initialize();
+  global.Initialize();
+  auto stage = std::make_shared<GameStage>(*this,0);
+  this->base_server->Add(stage);
+  auto sky_sphere = std::make_shared<SkySphere>(*this,0);
+  this->base_server->Add(sky_sphere);
+
   return true;
 }
 
@@ -24,7 +31,6 @@ bool ApplicationMain::Terminate()
 
   return true;
 }
-
 
 bool ApplicationMain::Input()
 {
@@ -39,7 +45,6 @@ bool ApplicationMain::Update()
   {
     return false;
   }
-
   return true;
 }
 

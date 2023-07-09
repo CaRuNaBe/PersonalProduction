@@ -5,6 +5,7 @@
  * \date   June 2023
  *********************************************************************/
 #include "InputManager.h"
+#include <DxLib.h>
 namespace
 {
   /** XINPUT_STATE初期化関数 */
@@ -81,9 +82,9 @@ InputManager::InputManager()
   is_click_on_key = false;
   is_click_on_r_trigger = false;
   is_click_on_l_trigger = false;
-  _gxKey = InitializeXinput();
-  _gxTrg = InitializeXinput();
-  _gxRel = InitializeXinput();
+  gx_key = InitializeXinput();
+  gx_trg = InitializeXinput();
+  gx_rel = InitializeXinput();
 }
 
 InputManager::~InputManager()
@@ -92,69 +93,69 @@ InputManager::~InputManager()
 bool InputManager::Update()
 {
   SetJoypadDeadZone(DX_INPUT_PAD1,0.50);
-  auto xkeyold = _gxKey;
-  GetJoypadXInputState(DX_INPUT_PAD1,&_gxKey);
-  _gxTrg = (_gxKey ^ xkeyold) & _gxKey;
-  _gxRel = (_gxKey ^ xkeyold) & ~_gxKey;
+  auto xkeyold = gx_key;
+  GetJoypadXInputState(DX_INPUT_PAD1,&gx_key);
+  gx_trg = (gx_key ^ xkeyold) & gx_key;
+  gx_rel = (gx_key ^ xkeyold) & ~gx_key;
 
   return true;
 };
 
 const bool InputManager::GetKeyXinput(const int button)
 {
-  return _gxKey.Buttons[button] == true;
+  return gx_key.Buttons[button] == TRUE;
 };
 
 const bool InputManager::GetTrgXinput(const int button)
 {
-  return _gxTrg.Buttons[button] == true;
+  return gx_trg.Buttons[button] == TRUE;
 };
 
 const bool InputManager::GetRelXinput(const int button)
 {
-  return _gxRel.Buttons[button] == true;
+  return gx_rel.Buttons[button] == TRUE;
 };
 
 const unsigned char& InputManager::GetLeftTrigger()
 {
-  return _gxKey.LeftTrigger;
+  return gx_key.LeftTrigger;
 };
 
 const unsigned char& InputManager::GetRightTrigger()
 {
-  return _gxKey.RightTrigger;
+  return gx_key.RightTrigger;
 };
 
 const short& InputManager::GetLstickX()
 {
-  return _gxKey.ThumbLX;
+  return gx_key.ThumbLX;
 };
 
 const short& InputManager::GetLstickY()
 {
-  return _gxKey.ThumbLY;
+  return gx_key.ThumbLY;
 };
 
 const short& InputManager::GetRstickX()
 {
-  return _gxKey.ThumbRX;
+  return gx_key.ThumbRX;
 };
 
 const short& InputManager::GetRstickY()
 {
-  return _gxKey.ThumbRY;
+  return gx_key.ThumbRY;
 };
 
 const bool& InputManager::XinputEveryOtherKey(const int button,const int frequency_frame)
 {
   is_click_on_key = true;
-  if( _gxKey.Buttons[button] >= 1 && (key_skip_count == 0) )
+  if( gx_key.Buttons[button] >= 1 && (key_skip_count == 0) )
   {
     /** key_skip_countが0カウントの時の処理 */
     key_skip_count++;
     return is_click_on_key;
   }
-  if( _gxKey.Buttons[button] >= 1 )
+  if( gx_key.Buttons[button] >= 1 )
   {
     /** 押されていた時 */
     key_skip_count++;
@@ -178,13 +179,13 @@ const bool& InputManager::XinputEveryOtherKey(const int button,const int frequen
 const bool& InputManager::XinputEveryOtherRightTrigger(const int frequency_frame)
 {
   is_click_on_r_trigger = true;
-  if( _gxKey.RightTrigger >= 10 && (righttrigger_skip_count == 0) )
+  if( gx_key.RightTrigger >= 10 && (righttrigger_skip_count == 0) )
   {
     /** righttrigger_skip_countが0カウントの時の処理 */
     righttrigger_skip_count++;
     return is_click_on_r_trigger;
   }
-  if( _gxKey.RightTrigger >= 10 )
+  if( gx_key.RightTrigger >= 10 )
   {
     /** 押されていた時 */
     righttrigger_skip_count++;
@@ -209,13 +210,13 @@ const bool& InputManager::XinputEveryOtherRightTrigger(const int frequency_frame
 const bool& InputManager::XinputEveryOtherLeftTrigger(const int frequency_frame)
 {
   is_click_on_l_trigger = true;
-  if( _gxKey.LeftTrigger >= 10 && (lefttrigger_skip_count == 0) )
+  if( gx_key.LeftTrigger >= 10 && (lefttrigger_skip_count == 0) )
   {
     /** lefttrigger_skip_countが0カウントの時の処理 */
     lefttrigger_skip_count++;
     return is_click_on_l_trigger;
   }
-  if( _gxKey.LeftTrigger >= 10 )
+  if( gx_key.LeftTrigger >= 10 )
   {
     /** 押されていた時 */
     lefttrigger_skip_count++;

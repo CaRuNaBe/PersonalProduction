@@ -105,15 +105,13 @@ namespace mymath
     return Vector4(cx,cy,cz);
   }
 
-  Vector4 Vector4::Lerp(const Vector4& start,const Vector4& end,const float& amount)
+  Vector4 Vector4::Lerp(const Vector4& start,const Vector4& end,float amount)
   {
-    /** 二点間の距離を求め補完値をかける */
-    float leng = start.Lenght(end) * amount;
-    /** 終了点に向かう向きベクトルを求める */
-    Vector4 dir_to_end = end - start;
-    /** 一応正規化 */
-    dir_to_end.Normalized();
-    return start + (dir_to_end * leng);/** スタート点に向きのスカラー倍を足す */
+    if( amount < 0.0f )
+    {
+      amount = 0.0f;
+    }
+    return start + ((end - start) * amount);
   };
 
   Vector4 Vector4::operator+(const Vector4& rhs) const
@@ -131,12 +129,12 @@ namespace mymath
     return Vector4(x * rhs.x,y * rhs.y,z * rhs.z);
   }
 
-  Vector4 Vector4::operator*(const float rhs) const
+  Vector4 Vector4::operator*(const float& rhs) const
   {
     return Vector4(x * rhs,y * rhs,z * rhs);
   }
 
-  Vector4 Vector4::operator/(const float rhs) const
+  Vector4 Vector4::operator/(const float& rhs) const
   {
     return Vector4(x / rhs,y / rhs,z / rhs);
   }

@@ -12,11 +12,11 @@ class GameBase
 public:
   /** コンストラクタ */
   GameBase(ApplicationBase& _game,int layer)
-    : _game(_game)
-    ,layer(layer)
+    : game(_game)
     ,is_dead(false)
     ,is_update_skip(false)
     ,is_draw_skip(false)
+    ,layer(layer)
     ,cnt(0)
   {}
   /** デストラクタ */
@@ -66,7 +66,7 @@ public:
 
 protected:
   /** ApplicationBaseの参照 */
-  ApplicationBase& _game;
+  ApplicationBase& game;
   /** このオブジェクトが死んだらtrue */
   bool is_dead;
   /** 更新したくないときtrue */

@@ -42,9 +42,9 @@ namespace mymath
     /** ベクトルのかけ算 a * b */
     Vector4 operator *(const Vector4& rhs) const;
     /** ベクトルのスカラー倍 v * scalar */
-    Vector4 operator *(const float rhs) const;
+    Vector4 operator *(const float& rhs) const;
     /** ベクトルのスカラー割 v / scalar */
-    Vector4 operator /(const float rhs) const;
+    Vector4 operator /(const float& rhs) const;
     /** ベクトル加算代入 */
     Vector4& operator+=(const Vector4& right);
     /** ベクトル減算代入 */
@@ -55,7 +55,7 @@ namespace mymath
     /** ベクトルの行列変換 オペレータ */
     Vector4 operator *(const Matrix44 rhs) const;
     /** ベクトルの大きさをゲット */
-    float Lenght(const Vector4& second = {0,0,0}) const;
+    float Lenght(const Vector4& second = { 0,0,0 }) const;
     /** このベクトルを正規化 */
     void Normalized();
     /** 正規化したベクトルをゲット */
@@ -65,7 +65,7 @@ namespace mymath
     /** ベクトルの外積(Cross product) a×b */
     Vector4 Cross(const Vector4& rhs) const;
     /** 線形補間(静的関数) */
-    static Vector4 Lerp(const Vector4& start,const Vector4& end,const float& amount);
+    static Vector4 Lerp(const Vector4& start,const Vector4& end,float amount);
 
     /** xをゲット */
     float GetX()const

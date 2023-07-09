@@ -31,6 +31,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In
     {
       break;
     };
+    app_base->Draw();
+    app_base->DeltaTimeAndFpsMeasure();
 #if _DEBUG
     /** escキーが押されたらゲーム終了 */
     if( CheckHitKey(KEY_INPUT_ESCAPE) )
@@ -38,7 +40,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In
       break;
     }
 #endif
-    app_base->Draw();
   }
 
   app_base->Terminate();

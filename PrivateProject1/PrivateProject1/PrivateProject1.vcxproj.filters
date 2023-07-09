@@ -4,13 +4,39 @@
     <Filter Include="source">
       <UniqueIdentifier>{2b159c55-9f69-4140-a0e8-fa8499e0acb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\GameObject">
+      <UniqueIdentifier>{7c3ba0b5-b9fc-4de2-bc64-9b5143b63caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\GameMode">
+      <UniqueIdentifier>{14bb6aa3-dfd5-4c2f-817a-54cdbc03dfd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\ApplicationGlobal.cpp" />
-    <ClCompile Include="source\ApplicationMain.cpp" />
+    <ClCompile Include="source\ApplicationGlobal.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ApplicationMain.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameStage.cpp">
+      <Filter>source\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SkySphere.cpp">
+      <Filter>source\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\ApplicationGlobal.h" />
-    <ClInclude Include="source\ApplicationMain.h" />
+    <ClInclude Include="source\ApplicationGlobal.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ApplicationMain.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStage.h">
+      <Filter>source\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SkySphere.h">
+      <Filter>source\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

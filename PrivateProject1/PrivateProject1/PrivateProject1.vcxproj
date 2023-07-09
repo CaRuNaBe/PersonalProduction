@@ -75,24 +75,44 @@
     <IntDir>$(Platform)/$(Configuration)/</IntDir>
     <IncludePath>$(SolutionDir)source;$(SolutionDir)../../../../;$(SolutionDir)../../../;$(SolutionDir)../../;$(SolutionDir)../;../../AppFrame/source;$(SolutionDir)../DxLib;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)$(Platform)/$(Configuration);$(SolutionDir)../DxLib;$(LibraryPath)</LibraryPath>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <ClangTidyChecks>
+    </ClangTidyChecks>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(Platform)/$(Configuration)/</IntDir>
     <IncludePath>$(SolutionDir)source;$(SolutionDir)../../../../;$(SolutionDir)../../../;$(SolutionDir)../../;$(SolutionDir)../;../../AppFrame/source;$(SolutionDir)../DxLib;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)$(Platform)/$(Configuration);$(SolutionDir)../DxLib;$(LibraryPath)</LibraryPath>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <ClangTidyChecks>
+    </ClangTidyChecks>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(Platform)/$(Configuration)/</IntDir>
     <IncludePath>$(SolutionDir)source;$(SolutionDir)../../../../;$(SolutionDir)../../../;$(SolutionDir)../../;$(SolutionDir)../;../../AppFrame/source;$(SolutionDir)../DxLib;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)$(Platform)/$(Configuration);$(SolutionDir)../DxLib;$(LibraryPath)</LibraryPath>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <ClangTidyChecks>
+    </ClangTidyChecks>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(Platform)/$(Configuration)/</IntDir>
     <IncludePath>$(SolutionDir)source;$(SolutionDir)../../../../;$(SolutionDir)../../../;$(SolutionDir)../../;$(SolutionDir)../;../../AppFrame/source;$(SolutionDir)../DxLib;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)$(Platform)/$(Configuration);$(SolutionDir)../DxLib;$(LibraryPath)</LibraryPath>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <ClangTidyChecks>
+    </ClangTidyChecks>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -155,10 +175,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\SkySphere.cpp" />
+    <ClCompile Include="source\GameStage.cpp" />
     <ClCompile Include="source\ApplicationGlobal.cpp" />
     <ClCompile Include="source\ApplicationMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\SkySphere.h" />
+    <ClInclude Include="source\GameStage.h" />
     <ClInclude Include="source\ApplicationGlobal.h" />
     <ClInclude Include="source\ApplicationMain.h" />
   </ItemGroup>

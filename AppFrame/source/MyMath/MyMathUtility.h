@@ -33,7 +33,7 @@ namespace mymath
     /** minからmaxのランダム値獲得関数(離散一様分布) */
     static int GetRandom(const int min,const int max);
     /** trueかfalseをランダム獲得(離散一様分布) */
-    static bool get_random()
+    static bool GetRandom()
     {
       return GetRandom(1,2) == 1 ? true : false;
     }

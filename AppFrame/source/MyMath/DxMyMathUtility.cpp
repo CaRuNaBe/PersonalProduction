@@ -8,10 +8,10 @@
 #include "DxMyMathUtility.h"
 #include "Vector4.h"
 #include "Matrix44.h"
-
+#include <Dxlib/DxLib.h>
 namespace mymath
 {
-  VECTOR ToDX(mymath::Vector4& vector)
+  DxLib::VECTOR ToDX(mymath::Vector4& vector)
   {
     return VGet(static_cast<float>(vector.GetX()),static_cast<float>(vector.GetY()),static_cast<float>(vector.GetZ()));
   }
@@ -21,7 +21,7 @@ namespace mymath
     return mymath::Vector4(static_cast<float>(vector.x),static_cast<float>(vector.y),static_cast<float>(vector.z));
   }
 
-  MATRIX ToDX(mymath::Matrix44& matrix)
+  DxLib::MATRIX ToDX(mymath::Matrix44& matrix)
   {
     MATRIX ret;
 

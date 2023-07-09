@@ -14,6 +14,9 @@
     <Filter Include="source\Base">
       <UniqueIdentifier>{2404f6f2-a7e2-4d8a-97b4-103e30fc1658}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\DxModel">
+      <UniqueIdentifier>{3dfbc43c-402b-4191-ada0-5b469540abff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -55,6 +58,9 @@
     <ClInclude Include="source\AppFrame.h">
       <Filter>source</Filter>
     </ClInclude>
+    <ClInclude Include="source\DxModel\Mv1Model.h">
+      <Filter>source\DxModel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application\WinMain.cpp">
@@ -92,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="source\MyMath\Easing.cpp">
       <Filter>source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DxModel\Mv1Model.cpp">
+      <Filter>source\DxModel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
  *********************************************************************/
 #pragma once
 #include <DxLib.h>
+struct tagXINPUT_STATE;
 class InputManager
 {
 public:
@@ -42,11 +43,11 @@ public:
 private:
   /** xinputコントローラー情報 */
   /** 連続入力の格納する構造体 */
-  XINPUT_STATE _gxKey;
+  XINPUT_STATE gx_key;
   /** 押したときだけ反応するものを格納する構造体 */
-  XINPUT_STATE _gxTrg;
+  XINPUT_STATE gx_trg;
   /** 離したとき反応反応するものを格納する構造体 */
-  XINPUT_STATE _gxRel;
+  XINPUT_STATE gx_rel;
   /** 何かを押したときカウントされていく変数 */
   int key_skip_count;
   /** 左トリガーが押されていたらカウントされていく変数 */

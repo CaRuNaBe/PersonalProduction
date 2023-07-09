@@ -6,10 +6,11 @@
  * @date   June 2023
  *********************************************************************/
 #pragma once
-#include "Vector4.h"
+
 #include "MyMathUtility.h"
 namespace mymath
 {
+  class Vector4;
   class Polar3D
   {
   public:

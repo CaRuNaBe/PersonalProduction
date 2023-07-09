@@ -5,17 +5,30 @@
  * \date   June 2023
  *********************************************************************/
 #include "ApplicationBase.h"
-ApplicationBase* ApplicationBase::lp_Instance = NULL;
+#include "DxLib.h"
+ApplicationBase* ApplicationBase::lp_instance = NULL;
 
 namespace
 {
-  static constexpr int z_buffer_bit_depth = 32;
-  static constexpr int color_bit_depth = 32;
+  static constexpr int Z_BUFFER_BIT_DEPTH = 32;
+  static constexpr int COLOR_BIT_DEPTH = 32;
+  /** システムが開始して経過した時間(1000で割ると秒になる) */
+  int now_time = 0;
+  /** 前の経過時間 */
+  int time = 0;
+
+  /** 今のリフレッシュレート */
+  int fps = 0;
+  /* 1フレームに1増加しディスプレイの設定したフレーム数になるととまりそれを描画する  */
+  int fps_counter = 0;
+  /** fpsを計測するときに使う前の経過時間 */
+  int fps_check_time = 0;
 }
 
 ApplicationBase::ApplicationBase()
 {
-  lp_Instance = this;
+  lp_instance = this;
+  is_game_end = false;
 }
 
 ApplicationBase::~ApplicationBase()
@@ -33,9 +46,9 @@ bool ApplicationBase::Initialize()
     ChangeWindowMode(TRUE);/** ウィンドウモードに指定する */
   }
   /** zバッファのbit深度を変更 */
-  SetZBufferBitDepth(z_buffer_bit_depth);
+  SetZBufferBitDepth(Z_BUFFER_BIT_DEPTH);
   /** 画面サイズセット */
-  SetGraphMode(DispSizeW(),DispSizeH(),color_bit_depth);
+  SetGraphMode(DispSizeW(),DispSizeH(),COLOR_BIT_DEPTH);
 
 
   if( DxLib_Init() == -1 )
@@ -56,6 +69,23 @@ bool ApplicationBase::Initialize()
   base_server = std::make_shared<GameServerShared<GameBase>>();
 
   is_game_end = false;
+
+  /** システム時間を取得しておく */
+  time = GetNowCount();
+
+  /** 最初の経過時間は仮に 0.00000f 秒にしておく */
+  delta_time = 0.00000f;
+
+  /** FPS計測関係の初期化 */
+  fps_check_time = GetNowCount();
+  fps = 0;
+  fps_counter = 0;
+
+  // カメラの設定ヴューワーからコピペ
+  _cam._vPos = VGet(73.636536f,86.688026f,-140.440582f);
+  _cam._vTarget = VGet(-12.230986f,59.101776f,-15.002045f);
+  _cam._clipNear = 2.376863f;
+  _cam._clipFar = 100000000000.f;
   return true;
 }
 
@@ -75,6 +105,8 @@ bool ApplicationBase::Input()
 bool ApplicationBase::Update()
 {
   base_server->Update();
+  int a = SetCameraPositionAndTarget_UpVecY(_cam._vPos,_cam._vTarget);
+  a = SetCameraNearFar(_cam._clipNear,_cam._clipFar);
   return true;
 }
 
@@ -83,10 +115,46 @@ bool ApplicationBase::Draw()
   /** 画面を初期化する */
   ClearDrawScreen();
   base_server->Draw();
+  // 0,0,0を中心に線を引く
+  {
+    float linelength = 1000.f;
+    VECTOR v = { 0, 0, 0 };
+    DrawLine3D(VAdd(v,VGet(-linelength,0,0)),VAdd(v,VGet(linelength,0,0)),GetColor(255,0,0));
+    DrawLine3D(VAdd(v,VGet(0,-linelength,0)),VAdd(v,VGet(0,linelength,0)),GetColor(0,255,0));
+    DrawLine3D(VAdd(v,VGet(0,0,-linelength)),VAdd(v,VGet(0,0,linelength)),GetColor(0,0,255));
+  }
+  FpsDraw();
   /** 裏画面の内容を表画面に反映させる */
   ScreenFlip();
   return true;
 }
+
+void ApplicationBase::DeltaTimeAndFpsMeasure()
+{
+  /** 現在のシステム時間を取得 */
+  now_time = GetNowCount();
+
+  /** 前回取得した時間からの経過時間を秒に変換してセット */
+  /** (GetNowCount で取得できる値はマイクロ秒単位なので 1000 で割ることで秒単位になる) */
+  delta_time = (now_time - time) / 1000.0f;
+
+  /** 今回取得した時間を保存 */
+  time = now_time;
+
+  /** FPS関係の処理(1秒経過する間に実行されたメインループの回数を FPS とする) */
+  fps_counter++;
+  if( now_time - fps_check_time > 1000 )
+  {
+    fps = fps_counter;
+    fps_counter = 0;
+    fps_check_time = now_time;
+  }
+}
+
+void ApplicationBase::FpsDraw()
+{
+  DrawFormatString(0,0,GetColor(255,255,255),"fps:%d",fps);
+};
 
 bool ApplicationBase::AppWindowed()
 {
