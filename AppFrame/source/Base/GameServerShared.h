@@ -1,6 +1,6 @@
 /*****************************************************************//**
- * \file   GameServer.h
- * \brief  ゲームに登場するものすべてを管理するクラス
+ * \file   GameServerShared.h
+ * \brief  ゲームに登場するものすべてを管理するクラス(shared_ptr対応)
  *
  * \author 阿部健太郎
  * \date   December 2022

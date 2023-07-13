@@ -1,6 +1,6 @@
 /*****************************************************************//**
  * \file   GameServerUnique.h
- * \brief  ゲームに登場するものすべてを管理するクラス
+ * \brief  ゲームに登場するものすべてを管理するクラス(unique_ptr対応)
  *
  * \author 阿部健太郎
  * \date   December 2022
@@ -9,7 +9,6 @@
 #include <memory>
 #include <vector>
 #include <algorithm>
-#include "GameBase.h"
 template<class T> class GameServerUnique
 {
   using GameBasePtr = std::unique_ptr<T>;
@@ -82,7 +81,6 @@ public:
       if( object->GetDrawSkip() )
       {
         object->SetDrawSkip(false);
-
         continue;//描画スキップ
       }
       object->Draw();

@@ -58,7 +58,7 @@ public:
   }
 
   /** 入力取得 */
-  const InputManager& GetInput()
+  InputManager& GetInput()
   {
     return input;
   }
@@ -66,6 +66,11 @@ public:
   void IsGameEnd()
   {
     is_game_end = true;
+  }
+  /** デルタタイムを取得(変更不可) */
+  const float& GetDeltaTime()const
+  {
+    return delta_time;
   }
 protected:
   /** このクラスはアプリケーションクラスの基底クラスなのでインスタンスをstaticにしあとで上書きされるようにする */

@@ -24,6 +24,9 @@
     <ClCompile Include="source\SkySphere.cpp">
       <Filter>source\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>source\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -36,6 +39,9 @@
       <Filter>source\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="source\SkySphere.h">
+      <Filter>source\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Player.h">
       <Filter>source\GameObject</Filter>
     </ClInclude>
   </ItemGroup>

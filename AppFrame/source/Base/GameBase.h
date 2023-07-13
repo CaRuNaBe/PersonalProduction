@@ -7,6 +7,11 @@
  *********************************************************************/
 #pragma once
 class ApplicationBase;
+namespace mymath
+{
+  class Matrix44;
+}
+
 class GameBase
 {
 public:

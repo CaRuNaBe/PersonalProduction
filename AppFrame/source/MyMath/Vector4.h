@@ -66,7 +66,6 @@ namespace mymath
     Vector4 Cross(const Vector4& rhs) const;
     /** 線形補間(静的関数) */
     static Vector4 Lerp(const Vector4& start,const Vector4& end,float amount);
-
     /** xをゲット */
     float GetX()const
     {

@@ -200,9 +200,9 @@ namespace mymath
     return Matrix44(result);
   }
 
-  void Matrix44::Transfer(const float x,const float y,const float z,bool make)
+  void Matrix44::Transfer(const float x,const float y,const float z,bool is_remake)
   {
-    if( make )
+    if( is_remake )
     {
       Unit();
     }
@@ -212,9 +212,21 @@ namespace mymath
     row_column[3][2] += z;
   }
 
-  void Matrix44::Scale(const float x,const float y,const float z,bool make)
+  void Matrix44::Transfer(const mymath::Vector4& transfer,bool is_remake)
   {
-    if( make )
+    if( is_remake )
+    {
+      Unit();
+    }
+
+    row_column[3][0] += transfer.GetX();
+    row_column[3][1] += transfer.GetY();
+    row_column[3][2] += transfer.GetZ();
+  };
+
+  void Matrix44::Scale(const float x,const float y,const float z,bool is_remake)
+  {
+    if( is_remake )
     {
       Unit();
     }
@@ -224,13 +236,11 @@ namespace mymath
     row_column[2][2] *= z;
   }
 
-  void Matrix44::RotateX(const float radians,bool make)
+  void Matrix44::RotateX(const float radians,bool is_remake)
   {
-    auto sin_cos = GetSinCos(radians);
-    auto sin = std::get<0>(sin_cos);
-    auto cos = std::get<1>(sin_cos);
+    auto [sin,cos] = GetSinCos(radians);
 
-    if( make )
+    if( is_remake )
     {
       Unit();
 
@@ -247,13 +257,11 @@ namespace mymath
     }
   }
 
-  void Matrix44::RotateY(const float radians,bool make)
+  void Matrix44::RotateY(const float radians,bool is_remake)
   {
-    auto sin_cos = GetSinCos(radians);
-    auto sin = std::get<0>(sin_cos);
-    auto cos = std::get<1>(sin_cos);
+    auto [sin,cos] = GetSinCos(radians);
 
-    if( make )
+    if( is_remake )
     {
       Unit();
 
@@ -270,13 +278,11 @@ namespace mymath
     }
   }
 
-  void Matrix44::RotateZ(const float radians,bool make)
+  void Matrix44::RotateZ(const float radians,bool is_remake)
   {
-    auto sin_cos = GetSinCos(radians);
-    auto sin = std::get<0>(sin_cos);
-    auto cos = std::get<1>(sin_cos);
+    auto [sin,cos] = GetSinCos(radians);
 
-    if( make )
+    if( is_remake )
     {
       Unit();
 
@@ -306,7 +312,7 @@ namespace mymath
 
   std::tuple<float,float> Matrix44::GetSinCos(const float radians) const
   {
-    return std::make_tuple(std::sin(radians),std::cos(radians));
+    return { std::sin(radians),std::cos(radians) };
   }
 
 }

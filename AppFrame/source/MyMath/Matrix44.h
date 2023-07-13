@@ -29,14 +29,14 @@ namespace mymath
     /** コピーコンストラクタ */
     Matrix44(const Matrix44&) = default;
     /** ムーブコンストラクタ */
-    Matrix44(Matrix44&&) = default; // ムーブ
+    Matrix44(Matrix44&&) = default; 
 
     /** デストラクタ */
     virtual ~Matrix44() = default;
     /** コピー代入 */
     Matrix44& operator =(const Matrix44&) = default;
     /** ムーブ代入 */
-    Matrix44& operator =(Matrix44&&) = default; // ムーブ
+    Matrix44& operator =(Matrix44&&) = default; 
     /** 行列の掛け算 */
     const Matrix44 operator *(const Matrix44& rhs) const;
     /** 行列とベクトルのかけ算 */
@@ -65,16 +65,19 @@ namespace mymath
     void Perspective(const float fov_y,const float aspect,const float near_z,const float far_z);
     /** 初期化し単位化させてからビューポート行列を作成 */
     void Viewport(const float width,const float height);
-    /** それぞれ値に移動した並行移動行列にするmakeがtrueの時初期化し単位化させてから並行行列にする */
-    void Transfer(const float x,const float y,const float z,bool make);
-    /** それぞれの拡大した行列にするmakeがtrueの時初期化し単位化させてから拡大行列にする */
-    void Scale(const float x,const float y,const float z,bool make);
-    /** x軸で回転した行列にするmakeがtrueの時初期化し単位化させてからx軸回転する */
-    void RotateX(const float radians,bool make);
-    /** y軸で回転した行列にするmakeがtrueの時初期化し単位化させてからy軸回転する */
-    void RotateY(const float radians,bool make);
-    /** z軸で回転した行列にするmakeがtrueの時初期化し単位化させてからz軸回転する */
-    void RotateZ(const float radians,bool make);
+    /** それぞれ値に移動した並行移動行列にするis_remakeがtrueの時初期化し単位化させてから並行行列にする */
+    void Transfer(const float x,const float y,const float z,bool is_remake = false);
+    /** Vector4のxyzの値をいれ並行移動行列にするis_remakeがtrueの時初期化し単位化させてから並行行列にする */
+    void Transfer(const mymath::Vector4& transfer,bool is_remake = false);
+
+    /** それぞれの拡大した行列にするis_remakeがtrueの時初期化し単位化させてから拡大行列にする */
+    void Scale(const float x,const float y,const float z,bool is_remake = false);
+    /** x軸で回転した行列にするis_remakeがtrueの時初期化し単位化させてからx軸回転する */
+    void RotateX(const float radians,bool is_remake = false);
+    /** y軸で回転した行列にするis_remakeがtrueの時初期化し単位化させてからy軸回転する */
+    void RotateY(const float radians,bool is_remake = false);
+    /** z軸で回転した行列にするis_remakeがtrueの時初期化し単位化させてからz軸回転する */
+    void RotateZ(const float radians,bool is_remake = false);
     /** 回転行列を取得 */
     Matrix44 GetRotate() const;
   private:

@@ -21,6 +21,6 @@ public:
   /** デバッグ用描画関数 */
   virtual bool DebugDraw();
 private:
-  Mv1Model modele;
+  model::Mv1Model modele;
 };
 

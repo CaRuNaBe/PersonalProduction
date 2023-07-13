@@ -19,11 +19,11 @@ namespace mymath
 namespace mymath
 {
   /** Vector4‚©‚çdxlib‚ÅŽg‚í‚ê‚éVECTOR‚É•ÏŠ· */
-  VECTOR ToDX(mymath::Vector4& vector);
+  VECTOR ToDX(const mymath::Vector4& vector);
   /** VECTOR‚©‚çVector4‚É‚Ö‚ñ‚©‚ñ */
-  mymath::Vector4 ToMyMath(VECTOR& vector);
+  mymath::Vector4 ToMyMath(const VECTOR& vector);
   /** matrix44‚©‚çdxlib—p‚ÌMATRIX‚É•ÏŠ· */
-  MATRIX ToDX(mymath::Matrix44& matrix);
+  MATRIX ToDX(const mymath::Matrix44& matrix);
   /** MATRIX‚©‚çmatrix44‚É•ÏŠ· */
-  mymath::Matrix44 ToMyMath(MATRIX& matrix);
+  mymath::Matrix44 ToMyMath(const MATRIX& matrix);
 }
