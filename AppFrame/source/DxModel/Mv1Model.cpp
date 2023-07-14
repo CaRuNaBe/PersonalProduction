@@ -6,9 +6,9 @@
  *********************************************************************/
 #include "Mv1Model.h"
 #include "DxLib.h"
-#include "../MyMath/Vector4.h"
-#include "../MyMath/DxMyMathUtility.h"
-#include "../MyMath/Matrix44.h"
+#include "MyMath/Vector4.h"
+#include "MyMath/DxMyMathUtility.h"
+#include "MyMath/Matrix44.h"
 namespace model
 {
   Mv1Model::Mv1Model(std::string&& filename)

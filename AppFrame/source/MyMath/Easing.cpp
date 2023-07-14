@@ -149,21 +149,21 @@ namespace mymath
     {
       "InSine",[](float t, float b, float c, float d)
       {
-        return -(c - b) * std::cos(t / d * (MyMathUtility::PIOVER2)) + c + b;
+        return -(c - b) * std::cos(t / d * (PIOVER2)) + c + b;
       }
     },
 
     {
       "OutSine",[](float t, float b, float c, float d)
       {
-        return (c - b) * std::sin(t / d * MyMathUtility::PIOVER2) + b;
+        return (c - b) * std::sin(t / d * PIOVER2) + b;
       }
     },
 
     {
       "InOutSine",[](float t, float b, float c, float d)
       {
-        return -(c - b) / 2.0f * (std::cos(MyMathUtility::PI * t / d) - 1.0f) + b;
+        return -(c - b) / 2.0f * (std::cos(PI * t / d) - 1.0f) + b;
       }
     },
 

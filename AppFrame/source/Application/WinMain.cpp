@@ -4,7 +4,8 @@
  * \author ˆ¢•”Œ’‘¾˜Y
  * \date   June 2023
  *********************************************************************/
-#include "../AppFrame.h"
+#include "AppFrame.h"
+
 int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In_ LPSTR lpCmdLine,_In_ int nShowCmd)
 {
   /** Logo—Í‚ğs‚í‚È‚¢ */

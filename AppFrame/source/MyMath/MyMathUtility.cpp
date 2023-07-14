@@ -34,4 +34,9 @@ namespace mymath
   {
     return radion * DEGREES_180 / PI;
   }
+
+  bool MyMathUtility::GetRandom()
+  {
+    return GetRandom(1,2) == 1 ? true : false;
+  }
 }

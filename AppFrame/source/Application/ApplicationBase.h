@@ -10,14 +10,7 @@
 #include "../Base/GameBase.h"
 #include "../Base/GameServerShared.h"
 #include "InputManager.h"
- // カメラ
-class Camera
-{
-public:
-  VECTOR _vPos;// 位置
-  VECTOR _vTarget; // 距離
-  float _clipNear,_clipFar;// クリップ
-};
+#include "Camera/Camera.h"
 
 class ApplicationBase
 {
@@ -72,6 +65,11 @@ public:
   {
     return delta_time;
   }
+  /** カメラのインスタンスを入手 */
+  Camera& GetCamera()
+  {
+    return camera;
+  }
 protected:
   /** このクラスはアプリケーションクラスの基底クラスなのでインスタンスをstaticにしあとで上書きされるようにする */
   static ApplicationBase* lp_instance;
@@ -84,6 +82,6 @@ protected:
   /** 可変フレームレート前回のフレームから何秒立ったか */
   float delta_time;
   // カメラ
-  Camera _cam;
+  Camera camera;
 
 };

@@ -6,8 +6,6 @@
  * @date   June 2023
  *********************************************************************/
 #pragma once
-
-#include "MyMathUtility.h"
 namespace mymath
 {
   class Vector4;

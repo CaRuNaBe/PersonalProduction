@@ -22,11 +22,12 @@ bool ApplicationMain::Initialize()
   }
   /** ‚±‚ÌƒQ[ƒ€‚Ì‰Šú‰» */
   global.Initialize();
-  auto stage = std::make_shared<GameStage>(*this,0);
-  this->base_server->Add(stage);
-  auto sky_sphere = std::make_shared<SkySphere>(*this,1);
+  auto sky_sphere = std::make_shared<SkySphere>(*this,0);
   this->base_server->Add(sky_sphere);
-  auto player = std::make_shared<Player>(*this,1);
+  auto stage = std::make_shared<GameStage>(*this,1);
+  this->base_server->Add(stage);
+
+  auto player = std::make_shared<Player>(*this,2);
   this->base_server->Add(player);
   return true;
 }

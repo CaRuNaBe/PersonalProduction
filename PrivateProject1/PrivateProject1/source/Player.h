@@ -24,8 +24,6 @@ private:
   model::Mv1Model modele;
   /** プレイヤーの位置、回転、スケール */
   mymath::Matrix44 transform;
-  /** キーボードの情報が入ってるバッファー */
-  char keyboard[256];
 };
 
 

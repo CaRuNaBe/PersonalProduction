@@ -224,6 +224,11 @@ namespace mymath
     row_column[3][2] += transfer.GetZ();
   };
 
+  mymath::Vector4 Matrix44::GetTransfer()const
+  {
+    return { row_column[3][0] , row_column[3][1] ,row_column[3][2] };
+  }
+
   void Matrix44::Scale(const float x,const float y,const float z,bool is_remake)
   {
     if( is_remake )

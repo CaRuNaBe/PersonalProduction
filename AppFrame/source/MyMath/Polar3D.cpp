@@ -6,6 +6,7 @@
  *********************************************************************/
 #include "Polar3D.h"
 #include "Vector4.h"
+#include "MyMathUtility.h"
 #include <cmath>
 namespace mymath
 {
@@ -29,8 +30,8 @@ namespace mymath
 
   Polar3D::Polar3D(const Vector4& vec)
     :radius(vec.Lenght())
-    ,theta(std::acos(vec.GetZ() / radius))
-    ,phi(mymath::Sign(vec.GetY())* std::acos(vec.GetX() / (std::sqrt((vec.GetX() * vec.GetX()) + (vec.GetY() * vec.GetY())))))
+    ,theta(std::acos(vec.GetY() / radius))
+    ,phi(mymath::Sign(vec.GetZ())* std::acos(vec.GetX() / (std::sqrt((vec.GetX() * vec.GetX()) + (vec.GetZ() * vec.GetZ())))))
   {};
 
   Vector4 Polar3D::ToVector4()

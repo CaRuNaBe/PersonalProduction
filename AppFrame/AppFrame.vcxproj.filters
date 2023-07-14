@@ -17,6 +17,9 @@
     <Filter Include="source\DxModel">
       <UniqueIdentifier>{3dfbc43c-402b-4191-ada0-5b469540abff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\Camera">
+      <UniqueIdentifier>{02865431-b9f3-42a3-9254-248439f452c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -61,6 +64,9 @@
     <ClInclude Include="source\DxModel\Mv1Model.h">
       <Filter>source\DxModel</Filter>
     </ClInclude>
+    <ClInclude Include="source\Camera\Camera.h">
+      <Filter>source\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application\WinMain.cpp">
@@ -101,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="source\DxModel\Mv1Model.cpp">
       <Filter>source\DxModel</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Camera\Camera.cpp">
+      <Filter>source\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

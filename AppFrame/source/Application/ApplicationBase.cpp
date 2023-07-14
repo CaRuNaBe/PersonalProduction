@@ -26,6 +26,7 @@ namespace
 }
 
 ApplicationBase::ApplicationBase()
+  : camera { DispSizeW(),DispSizeH() }
 {
   lp_instance = this;
   is_game_end = false;
@@ -81,11 +82,7 @@ bool ApplicationBase::Initialize()
   fps = 0;
   fps_counter = 0;
 
-  // カメラの設定ヴューワーからコピペ
-  _cam._vPos = VGet(73.636536f,86.688026f,-140.440582f);
-  _cam._vTarget = VGet(-12.230986f,59.101776f,-15.002045f);
-  _cam._clipNear = 2.376863f;
-  _cam._clipFar = 100000000000.f;
+  camera.SetAspect(DispSizeW(),DispSizeH());
   return true;
 }
 
@@ -105,8 +102,7 @@ bool ApplicationBase::Input()
 bool ApplicationBase::Update()
 {
   base_server->Update();
-  int a = SetCameraPositionAndTarget_UpVecY(_cam._vPos,_cam._vTarget);
-  a = SetCameraNearFar(_cam._clipNear,_cam._clipFar);
+  camera.Update();
   return true;
 }
 
