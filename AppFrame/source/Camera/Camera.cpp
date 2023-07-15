@@ -37,7 +37,7 @@ bool Camera::Update()
   SetCameraViewMatrix(ToDX(view_matrix));
 
   auto projection_matrix = GetProjectionMatrix();
-  //SetCameraNearFar(near_value,far_value);
+
   SetupCamera_ProjectionMatrix(ToDX(projection_matrix));
   return true;
 }

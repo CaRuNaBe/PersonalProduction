@@ -81,7 +81,7 @@ protected:
   bool is_game_end;
   /** 可変フレームレート前回のフレームから何秒立ったか */
   float delta_time;
-  // カメラ
+  /** カメラ */
   Camera camera;
 
 };

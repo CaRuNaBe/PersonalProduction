@@ -77,7 +77,16 @@ public:
   {
     return up;
   }
-
+  /** ターゲットの向きベクトル取得 未正規化 */
+  const mymath::Vector4 GetFromTargetDirection() const
+  {
+    return position - target;
+  }
+  /** カメラの向きベクトル取得 未正規化 */
+  const mymath::Vector4 GetFromCameraDirection() const
+  {
+    return target - position;
+  }
   /** ビュー、マトリクスを取得 */
   const mymath::Matrix44 GetViewMatrix() const;
   /** プロジェクションマトリクスを取得 */

@@ -9,7 +9,6 @@ namespace mymath
 {
   class Matrix44;
   class Polar3D;
-
   class Vector4
   {
   public:
@@ -62,10 +61,15 @@ namespace mymath
     Vector4 GetNormalize() const;
     /** ベクトルの内積(Dot product) a・b */
     float Dot(const Vector4& rhs) const;
+    /** ベクトルの内積(Dot product) a・b(静的関数) */
+    static float Dot(const Vector4& v1,const Vector4& v2);
     /** ベクトルの外積(Cross product) a×b */
     Vector4 Cross(const Vector4& rhs) const;
+    /** 外積 (静的関数) */
+    static Vector4 Cross(const Vector4& v1,const Vector4& v2);
     /** 線形補間(静的関数) */
     static Vector4 Lerp(const Vector4& start,const Vector4& end,float amount);
+
     /** xをゲット */
     float GetX()const
     {
@@ -116,4 +120,7 @@ namespace mymath
     float z;
     float w;
   };
+  static const mymath::Vector4 RIGHT = { 1.0f,0.0f,0.0f };
+  static const mymath::Vector4 UP = { 0.0f,1.0f,0.0f };
+  static const mymath::Vector4 FRONT = { 0.0f,0.0f,1.0f };
 } // mymath

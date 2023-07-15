@@ -95,6 +95,10 @@ namespace mymath
   {
     return x * rhs.x + y * rhs.y + z * rhs.z;
   }
+  float Vector4::Dot(const Vector4& v1,const Vector4& v2)
+  {
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+  }
 
   Vector4 Vector4::Cross(const Vector4& rhs) const
   {
@@ -103,6 +107,14 @@ namespace mymath
     auto cz = x * rhs.y - y * rhs.x;
 
     return Vector4(cx,cy,cz);
+  }
+  Vector4 Vector4::Cross(const Vector4& v1,const Vector4& v2)
+  {
+    Vector4 result;
+    result.x = v1.y * v2.z - v1.z * v2.y;
+    result.y = v1.z * v2.x - v1.x * v2.z;
+    result.z = v1.x * v2.y - v1.y * v2.x;
+    return result;
   }
 
   Vector4 Vector4::Lerp(const Vector4& start,const Vector4& end,float amount)
