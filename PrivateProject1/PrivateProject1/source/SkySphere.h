@@ -21,7 +21,5 @@ public:
   virtual bool DebugDraw();
 private:
   model::Mv1Model modele;
-  /** 位置、回転、スケール */
-  mymath::Matrix44 transform;
 };
 

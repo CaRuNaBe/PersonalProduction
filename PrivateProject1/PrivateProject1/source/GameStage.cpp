@@ -17,8 +17,6 @@ GameStage::~GameStage()
 
 bool GameStage::Update()
 {
-  auto pos = mymath::Vector4(0,0,0);
-  modele.SetPosition(pos);
   return true;
 };
 

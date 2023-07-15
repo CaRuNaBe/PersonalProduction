@@ -120,7 +120,7 @@ namespace mymath
     float z;
     float w;
   };
-  static const mymath::Vector4 RIGHT = { 1.0f,0.0f,0.0f };
-  static const mymath::Vector4 UP = { 0.0f,1.0f,0.0f };
-  static const mymath::Vector4 FRONT = { 0.0f,0.0f,1.0f };
+  static const mymath::Vector4 VECTOR4_RIGHT = { 1.0f,0.0f,0.0f };
+  static const mymath::Vector4 VECTOR4_UP = { 0.0f,1.0f,0.0f };
+  static const mymath::Vector4 VECTOR4_FRONT = { 0.0f,0.0f,1.0f };
 } // mymath

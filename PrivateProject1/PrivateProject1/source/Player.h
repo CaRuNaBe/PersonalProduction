@@ -22,8 +22,8 @@ public:
 private:
   /** プレイヤーの3dモデル */
   model::Mv1Model modele;
-  /** プレイヤーの位置、回転、スケール */
-  mymath::Matrix44 transform;
+  /** プレイヤーの位置 */
+  mymath::Vector4 position;
 };
 
 

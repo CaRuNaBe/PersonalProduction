@@ -108,12 +108,16 @@ bool ApplicationBase::Update()
 
 bool ApplicationBase::Draw()
 {
+  /** フォグ設定 */
+  SetFogEnable(TRUE);
+  SetFogColor(255,255,205);
+  SetFogStartEnd(5000.f,800000.f);
   /** 画面を初期化する */
   ClearDrawScreen();
   base_server->Draw();
-  // 0,0,0を中心に線を引く
+  /** 0,0,0を中心に線を引く */
   {
-    float linelength = 1000.f;
+    float linelength = 1000000.f;
     VECTOR v = { 0, 0, 0 };
     DrawLine3D(VAdd(v,VGet(-linelength,0,0)),VAdd(v,VGet(linelength,0,0)),GetColor(255,0,0));
     DrawLine3D(VAdd(v,VGet(0,-linelength,0)),VAdd(v,VGet(0,linelength,0)),GetColor(0,255,0));
