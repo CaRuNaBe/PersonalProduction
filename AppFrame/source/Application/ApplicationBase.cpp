@@ -51,12 +51,16 @@ bool ApplicationBase::Initialize()
   /** 画面サイズセット */
   SetGraphMode(DispSizeW(),DispSizeH(),COLOR_BIT_DEPTH);
 
+  SetWaitVSyncFlag(TRUE);
+  SetAlwaysRunFlag(TRUE);
 
   if( DxLib_Init() == -1 )
   {
     /** エラーが起きたら直ちに終了 */
     return false;
   }
+ 
+
   /** 描画先画面を裏画面にセット */
   SetDrawScreen(DX_SCREEN_BACK);
 
@@ -65,7 +69,7 @@ bool ApplicationBase::Initialize()
 
   /** Ｚバッファへの書き込みを有効にする */
   SetWriteZBuffer3D(TRUE);
-
+  SetBackgroundColor(0,192,255);
   /** モードサーバの初期化 */
   base_server = std::make_shared<GameServerShared<GameBase>>();
 
@@ -74,7 +78,7 @@ bool ApplicationBase::Initialize()
   /** システム時間を取得しておく */
   time = GetNowCount();
 
-  /** 最初の経過時間は仮に 0.00000f 秒にしておく */
+  /** 最初の経過時間は0.00000f 秒にしておく */
   delta_time = 0.00000f;
 
   /** FPS計測関係の初期化 */
@@ -110,8 +114,8 @@ bool ApplicationBase::Draw()
 {
   /** フォグ設定 */
   SetFogEnable(TRUE);
-  SetFogColor(255,255,205);
-  SetFogStartEnd(5000.f,800000.f);
+  SetFogColor(255,255,255);
+  SetFogStartEnd(55.f,800.f);
   /** 画面を初期化する */
   ClearDrawScreen();
   base_server->Draw();

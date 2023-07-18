@@ -175,6 +175,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\ModeGame.cpp" />
+    <ClCompile Include="source\ObjectBase3d.cpp" />
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\SkySphere.cpp" />
     <ClCompile Include="source\GameStage.cpp" />
@@ -182,6 +184,8 @@
     <ClCompile Include="source\ApplicationMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\ModeGame.h" />
+    <ClInclude Include="source\ObjectBase3d.h" />
     <ClInclude Include="source\Player.h" />
     <ClInclude Include="source\SkySphere.h" />
     <ClInclude Include="source\GameStage.h" />

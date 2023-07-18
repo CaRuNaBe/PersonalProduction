@@ -6,11 +6,14 @@
  *********************************************************************/
 #pragma once
 #include "AppFrame.h"
-class SkySphere : public GameBase
+#include "string"
+#include "ObjectBase3d.h"
+#include "ModeGame.h"
+class SkySphere : public ObjectBase3d
 {
 public:
   /** コンストラクタ */
-  SkySphere(ApplicationBase& game,int layer);
+  SkySphere(ApplicationBase& game,int layer,ModeGame& mode,std::string filename);
   /** デストラクタ */
   virtual ~SkySphere();
   /** 更新関数 */
@@ -20,6 +23,5 @@ public:
   /** デバッグ用描画関数 */
   virtual bool DebugDraw();
 private:
-  model::Mv1Model modele;
 };
 

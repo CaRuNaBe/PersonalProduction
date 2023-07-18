@@ -7,10 +7,8 @@
 #include "AppFrame.h"
 #include "ApplicationMain.h"
 #include "ApplicationGlobal.h"
-#include "GameStage.h"
-#include "SkySphere.h"
-#include "Player.h"
- /** À‘Ì */ 
+#include "ModeGame.h"
+ /** À‘Ì */
 ApplicationMain g_oapplicationmain;
 
 bool ApplicationMain::Initialize()
@@ -22,13 +20,10 @@ bool ApplicationMain::Initialize()
   }
   /** ‚±‚ÌƒQ[ƒ€‚Ì‰Šú‰» */
   global.Initialize();
-  auto sky_sphere = std::make_shared<SkySphere>(*this,0);
-  this->base_server->Add(sky_sphere);
-  auto stage = std::make_shared<GameStage>(*this,1);
-  this->base_server->Add(stage);
 
-  auto player = std::make_shared<Player>(*this,2);
-  this->base_server->Add(player);
+  auto game = std::make_shared<ModeGame>(*this,0);
+  this->base_server->Add(game);
+
   return true;
 }
 

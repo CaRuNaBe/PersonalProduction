@@ -7,9 +7,8 @@
  *********************************************************************/
 #include "GameStage.h"
 
-GameStage::GameStage(ApplicationBase& game,int layer)
-  :GameBase(game,layer)
-  ,modele("res/stage2_sample/cg_stage2.mv1")
+GameStage::GameStage(ApplicationBase& game,int layer,ModeGame& mode,std::string filename)
+  :ObjectBase3d(game,layer,mode,filename)
 {};
 
 GameStage::~GameStage()
@@ -17,6 +16,8 @@ GameStage::~GameStage()
 
 bool GameStage::Update()
 {
+  mymath::Matrix44 transform;
+  modele.SetMatrix(transform);
   return true;
 };
 

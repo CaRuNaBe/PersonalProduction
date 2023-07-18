@@ -6,11 +6,14 @@
  *********************************************************************/
 #pragma once
 #include "AppFrame.h"
-class Player : public GameBase
+#include "string"
+#include "ObjectBase3d.h"
+#include "ModeGame.h"
+class Player : public ObjectBase3d
 {
 public:
   /** コンストラクタ */
-  Player(ApplicationBase& game,int layer);
+  Player(ApplicationBase& game,int layer,ModeGame& mode,std::string filename);
   /** デストラクタ */
   virtual ~Player();
   /** 更新関数 */
@@ -20,10 +23,15 @@ public:
   /** デバッグ用描画関数 */
   virtual bool DebugDraw();
 private:
-  /** プレイヤーの3dモデル */
-  model::Mv1Model modele;
-  /** プレイヤーの位置 */
-  mymath::Vector4 position;
+  enum class Status
+  {
+    WAIT,
+    MOVE
+  };
+  /** このプレイヤーの状態 */
+  Status status;
+  /** カメラ動かすための関数 */
+  void CameraMoves();
 };
 
 

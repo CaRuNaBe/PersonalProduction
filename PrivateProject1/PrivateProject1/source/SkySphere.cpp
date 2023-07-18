@@ -6,9 +6,8 @@
  *********************************************************************/
 #include "SkySphere.h"
 
-SkySphere::SkySphere(ApplicationBase& game,int layer)
-  :GameBase(game,layer)
-  ,modele("res/skysphere_morning/cg_stageSkymap_1.mv1")
+SkySphere::SkySphere(ApplicationBase& game,int layer,ModeGame& mode,std::string filename)
+  :ObjectBase3d(game,layer,mode,filename)
 {};
 
 SkySphere::~SkySphere()
@@ -16,6 +15,8 @@ SkySphere::~SkySphere()
 
 bool SkySphere::Update()
 {
+  mymath::Matrix44 transform;
+  modele.SetMatrix(transform);
   return true;
 };
 

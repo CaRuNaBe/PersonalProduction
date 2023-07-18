@@ -17,7 +17,7 @@ namespace model
   {
   public:
     /** コンストラクタ */
-    Mv1Model(std::string&& filename);
+    Mv1Model(std::string filename);
     /** コピーコンストラクタ */
     Mv1Model(const Mv1Model&) = delete;
     /** ムーブコンストラクタ */
@@ -41,6 +41,8 @@ namespace model
     bool SetRotation(const mymath::Vector4& rotation);
     /** モデルの座標変換用行列をセットする */
     bool SetMatrix(const mymath::Matrix44& parameter);
+    /** モデルの座標変換用行列を取得する */
+    mymath::Matrix44 GetMatrix()const;
   private:
     int mv1_model;
   };

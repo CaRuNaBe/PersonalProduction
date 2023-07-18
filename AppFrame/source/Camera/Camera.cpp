@@ -32,13 +32,16 @@ Camera::Camera(int screen_width,int screen_height)
 
 bool Camera::Update()
 {
+
+
   auto view_matrix = GetViewMatrix();
 
   SetCameraViewMatrix(ToDX(view_matrix));
-
+  //SetCameraPositionAndTarget_UpVecY(ToDX(position),ToDX(target));
   auto projection_matrix = GetProjectionMatrix();
 
   SetupCamera_ProjectionMatrix(ToDX(projection_matrix));
+  //SetCameraNearFar(near_value,far_value);
   return true;
 }
 

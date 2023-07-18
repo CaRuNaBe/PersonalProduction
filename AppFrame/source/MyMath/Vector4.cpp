@@ -49,9 +49,9 @@ namespace mymath
     ,w(1.0f)
   {};
 
-  float Vector4::Lenght(const Vector4& second) const
+  float Vector4::Lenght() const
   {
-    return sqrt((x - second.GetX()) * (x - second.GetX()) + (y - second.GetY()) * (y - second.GetY()) + (z - second.GetZ()) * (z - second.GetZ()));
+    return sqrt(x * x + y * y + z * z);
   }
 
   void Vector4::Normalized()

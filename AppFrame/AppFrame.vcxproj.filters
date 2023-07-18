@@ -67,6 +67,9 @@
     <ClInclude Include="source\Camera\Camera.h">
       <Filter>source\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="source\MyMath\Quaternion.h">
+      <Filter>source\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application\WinMain.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="source\Camera\Camera.cpp">
       <Filter>source\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MyMath\Quaternion.cpp">
+      <Filter>source\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

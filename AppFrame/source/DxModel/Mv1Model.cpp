@@ -9,13 +9,13 @@
 #include "MyMath/Vector4.h"
 #include "MyMath/DxMyMathUtility.h"
 #include "MyMath/Matrix44.h"
+#include "mymath/DxMyMathUtility.h"
 namespace model
 {
-  Mv1Model::Mv1Model(std::string&& filename)
+  Mv1Model::Mv1Model(std::string filename)
   {
     mv1_model = MV1LoadModel(filename.c_str());
   }
-
 
   Mv1Model::~Mv1Model()
   {
@@ -24,6 +24,9 @@ namespace model
 
   void Mv1Model::Draw()
   {
+    // Z バッファを有効化
+    MV1SetUseZBuffer(mv1_model,TRUE);
+    MV1SetWriteZBuffer(mv1_model,TRUE);
     MV1DrawModel(mv1_model);
   }
 
@@ -46,4 +49,9 @@ namespace model
   {
     return MV1SetMatrix(mv1_model,mymath::ToDX(parameter));
   }
+
+  mymath::Matrix44  Mv1Model::GetMatrix()const
+  {
+    return mymath::ToMyMath(MV1GetMatrix(mv1_model));
+  };
 }

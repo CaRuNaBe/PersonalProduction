@@ -54,7 +54,7 @@ namespace mymath
     /** ベクトルの行列変換 オペレータ */
     Vector4 operator *(const Matrix44 rhs) const;
     /** ベクトルの大きさをゲット */
-    float Lenght(const Vector4& second = { 0,0,0 }) const;
+    float Lenght() const;
     /** このベクトルを正規化 */
     void Normalized();
     /** 正規化したベクトルをゲット */
