@@ -12,17 +12,17 @@ namespace mymath
 {
   DxLib::VECTOR ToDX(const mymath::Vector4& vector)
   {
-    return VGet(static_cast<float>(vector.GetX()),static_cast<float>(vector.GetY()),static_cast<float>(vector.GetZ()));
+    return DxLib::VGet(static_cast<float>(vector.GetX()),static_cast<float>(vector.GetY()),static_cast<float>(vector.GetZ()));
   }
 
-  mymath::Vector4 ToMyMath(const VECTOR& vector)
+  mymath::Vector4 ToMyMath(const DxLib::VECTOR& vector)
   {
     return mymath::Vector4(static_cast<float>(vector.x),static_cast<float>(vector.y),static_cast<float>(vector.z));
   }
 
   DxLib::MATRIX ToDX(const mymath::Matrix44& matrix)
   {
-    MATRIX ret;
+    DxLib::MATRIX ret;
 
     for( auto i = 0; i < mymath::row_max; ++i )
     {
@@ -35,7 +35,7 @@ namespace mymath
     return ret;
   }
 
-  mymath::Matrix44 ToMyMath(const MATRIX& matrix)
+  mymath::Matrix44 ToMyMath(const DxLib::MATRIX& matrix)
   {
     mymath::Matrix44 ret;
 

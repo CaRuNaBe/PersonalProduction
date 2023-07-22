@@ -6,6 +6,9 @@
  *********************************************************************/
 #pragma once
 #include <string>
+#include <vector>
+#include <tuple>
+#include <map>
 namespace mymath
 {
   class Vector4;
@@ -43,7 +46,15 @@ namespace model
     bool SetMatrix(const mymath::Matrix44& parameter);
     /** モデルの座標変換用行列を取得する */
     mymath::Matrix44 GetMatrix()const;
+    /** モデルのすべてのフレームに対しコリジョン情報を構築する */
+    bool SetupAllCollInfo();
+    /** 	アニメーションをアタッチする */
+    int AttachAnim(int anim_index,int anim_src_mhandle = -1,int name_check = 1);
   private:
+    /** モデルのアニメーションの名前と総再生時間をvectorに入れる */
+    void SetVectorAnimationNameAndTime();
     int mv1_model;
+    std::vector<std::tuple<std::string,float>> animation_name_and_time_vector;
+    std::map<std::string,int> collision_flame;
   };
 }

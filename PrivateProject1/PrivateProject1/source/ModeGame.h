@@ -6,7 +6,7 @@
  *********************************************************************/
 #pragma once
 #include "AppFrame.h"
-#include "ObjectBase3d.h"
+#include "GameObject.h"
 
 class ModeGame :public GameBase
 {
@@ -21,11 +21,12 @@ public:
   virtual bool Draw();
   /** デバッグ用描画関数 */
   virtual bool DebugDraw();
-  GameServerShared<ObjectBase3d>& GetObjectBase3dServer()
+  /** このモードで使われるオブジェクトのサーバーを取得 */
+  GameServerShared<GameObject>& GetGameObjectServer()
   {
     return game_object;
   }
 private:
-  GameServerShared<ObjectBase3d> game_object;
+  GameServerShared<GameObject> game_object;
 };
 

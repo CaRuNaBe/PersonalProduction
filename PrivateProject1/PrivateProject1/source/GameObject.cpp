@@ -1,30 +1,30 @@
 /*****************************************************************//**
- * \file   ObjectBase3d.cpp
+ * \file   GameObject.cpp
  * \brief  3dオブジェクトの基底クラス(宣言)
  * \author 阿部健太郎
  * \date   July 2023
  *********************************************************************/
-#include "ObjectBase3d.h"
+#include "GameObject.h"
 #include "ModeGame.h"
-ObjectBase3d::ObjectBase3d(ApplicationBase& game,int layer,ModeGame& mode,std::string filename)
+GameObject::GameObject(ApplicationBase& game,int layer,ModeGame& mode,std::string filename)
   :GameBase(game,layer)
   ,mode_game(mode)
   ,modele(filename)
 {};
 
-ObjectBase3d::~ObjectBase3d()
+GameObject::~GameObject()
 {};
 
-bool ObjectBase3d::Update()
+bool GameObject::Update()
 {
   return true;
 };
-bool ObjectBase3d::Draw()
+bool GameObject::Draw()
 {
   return true;
 };
 
-bool ObjectBase3d::DebugDraw()
+bool GameObject::DebugDraw()
 {
   return true;
 };

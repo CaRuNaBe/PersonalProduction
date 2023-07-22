@@ -7,7 +7,7 @@
 #include "SkySphere.h"
 
 SkySphere::SkySphere(ApplicationBase& game,int layer,ModeGame& mode,std::string filename)
-  :ObjectBase3d(game,layer,mode,filename)
+  :GameObject(game,layer,mode,filename)
 {};
 
 SkySphere::~SkySphere()

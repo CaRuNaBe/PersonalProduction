@@ -9,9 +9,9 @@
 namespace
 {
   /** XINPUT_STATEèâä˙âªä÷êî */
-  const XINPUT_STATE InitializeXinput()
+  const DxLib::XINPUT_STATE InitializeXinput()
   {
-    XINPUT_STATE input;
+    DxLib::XINPUT_STATE input;
     for( int i = 0; i < 16; i++ )
     {
       input.Buttons[i] = 0;
@@ -26,9 +26,9 @@ namespace
     return input;
   };
   /** XINPUT_STATEìØémÇÃor */
-  const XINPUT_STATE operator^(const XINPUT_STATE& left,const XINPUT_STATE& right)
+  const DxLib::XINPUT_STATE operator^(const DxLib::XINPUT_STATE& left,const DxLib::XINPUT_STATE& right)
   {
-    XINPUT_STATE input = InitializeXinput();
+    DxLib::XINPUT_STATE input = InitializeXinput();
     for( int i = 0; i < 16; i++ )
     {
       input.Buttons[i] = left.Buttons[i] ^ right.Buttons[i];
@@ -42,9 +42,9 @@ namespace
     return input;
   };
   /** XINPUT_STATEìØémÇÃand */
-  const XINPUT_STATE operator&(const XINPUT_STATE& left,const XINPUT_STATE& right)
+  const DxLib::XINPUT_STATE operator&(const DxLib::XINPUT_STATE& left,const DxLib::XINPUT_STATE& right)
   {
-    XINPUT_STATE input = InitializeXinput();
+    DxLib::XINPUT_STATE input = InitializeXinput();
     for( int i = 0; i < 16; i++ )
     {
       input.Buttons[i] = left.Buttons[i] & right.Buttons[i];
@@ -57,9 +57,9 @@ namespace
     return input;
   };
   /** XINPUT_STATEìØémÇÃnot */
-  const XINPUT_STATE operator~(const XINPUT_STATE& right)
+  const DxLib::XINPUT_STATE operator~(const DxLib::XINPUT_STATE& right)
   {
-    XINPUT_STATE input = InitializeXinput();
+    DxLib::XINPUT_STATE input = InitializeXinput();
     for( int i = 0; i < 16; i++ )
     {
       input.Buttons[i] = ~right.Buttons[i];
@@ -92,7 +92,7 @@ InputManager::~InputManager()
 
 bool InputManager::Update()
 {
-  SetJoypadDeadZone(DX_INPUT_PAD1,0.50);
+  DxLib::SetJoypadDeadZone(DX_INPUT_PAD1,0.50);
   auto xkeyold = gx_key;
   GetJoypadXInputState(DX_INPUT_PAD1,&gx_key);
   gx_trg = (gx_key ^ xkeyold) & gx_key;

@@ -7,9 +7,9 @@
 #pragma once
 #include "AppFrame.h"
 #include "string"
-#include "ObjectBase3d.h"
+#include "GameObject.h"
 #include "ModeGame.h"
-class SkySphere : public ObjectBase3d
+class SkySphere : public GameObject
 {
 public:
   /** コンストラクタ */

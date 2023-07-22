@@ -27,7 +27,7 @@
     <ClCompile Include="source\Player.cpp">
       <Filter>source\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="source\ObjectBase3d.cpp">
+    <ClCompile Include="source\GameObject.cpp">
       <Filter>source\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="source\ModeGame.cpp">
@@ -50,7 +50,7 @@
     <ClInclude Include="source\Player.h">
       <Filter>source\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="source\ObjectBase3d.h">
+    <ClInclude Include="source\GameObject.h">
       <Filter>source\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="source\ModeGame.h">

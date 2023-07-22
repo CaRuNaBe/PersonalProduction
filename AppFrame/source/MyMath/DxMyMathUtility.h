@@ -6,9 +6,13 @@
  * \date   June 2023
  *********************************************************************/
 #pragma once
-#include <Dxlib/DxLib.h>
-struct tagVECTOR;
-struct tagMATRIX;
+#include <DxLib.h>
+namespace DxLib
+{
+  struct tagVECTOR;
+  struct tagMATRIX;
+}
+
 
 namespace mymath
 {
@@ -19,11 +23,11 @@ namespace mymath
 namespace mymath
 {
   /** Vector4‚©‚çdxlib‚ÅŽg‚í‚ê‚éVECTOR‚É•ÏŠ· */
-  VECTOR ToDX(const mymath::Vector4& vector);
+  DxLib::VECTOR ToDX(const mymath::Vector4& vector);
   /** VECTOR‚©‚çVector4‚É‚Ö‚ñ‚©‚ñ */
-  mymath::Vector4 ToMyMath(const VECTOR& vector);
+  mymath::Vector4 ToMyMath(const DxLib::VECTOR& vector);
   /** matrix44‚©‚çdxlib—p‚ÌMATRIX‚É•ÏŠ· */
-  MATRIX ToDX(const mymath::Matrix44& matrix);
+  DxLib::MATRIX ToDX(const mymath::Matrix44& matrix);
   /** MATRIX‚©‚çmatrix44‚É•ÏŠ· */
-  mymath::Matrix44 ToMyMath(const MATRIX& matrix);
+  mymath::Matrix44 ToMyMath(const DxLib::MATRIX& matrix);
 }

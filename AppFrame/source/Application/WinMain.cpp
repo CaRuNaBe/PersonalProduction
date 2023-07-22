@@ -9,7 +9,7 @@
 int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In_ LPSTR lpCmdLine,_In_ int nShowCmd)
 {
   /** Log出力を行わない */
-  SetOutApplicationLogValidFlag(FALSE);
+  DxLib::SetOutApplicationLogValidFlag(FALSE);
   /** アプリケーションのインスタンをゲット */
   auto app_base = ApplicationBase::GetInstance();
   /** nullであれば終了 */
@@ -24,7 +24,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In
   }
 
   /** 1フレームループを組む */
-  while( ProcessMessage() == 0 )// プログラムが終了するまでループ
+  while( DxLib::ProcessMessage() == 0 )// プログラムが終了するまでループ
   {
     app_base->Input();
 
@@ -36,7 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In
     app_base->DeltaTimeAndFpsMeasure();
 #if _DEBUG
     /** escキーが押されたらゲーム終了 */
-    if( CheckHitKey(KEY_INPUT_ESCAPE) )
+    if( DxLib::CheckHitKey(KEY_INPUT_ESCAPE) )
     {
       break;
     }

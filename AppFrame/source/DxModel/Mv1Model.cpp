@@ -14,20 +14,26 @@ namespace model
 {
   Mv1Model::Mv1Model(std::string filename)
   {
-    mv1_model = MV1LoadModel(filename.c_str());
+    mv1_model = DxLib::MV1LoadModel(filename.c_str());
+    SetVectorAnimationNameAndTime();
   }
 
   Mv1Model::~Mv1Model()
   {
-    MV1DeleteModel(mv1_model);
+    DxLib::MV1DeleteModel(mv1_model);
+
+    for( auto&& map : collision_flame )
+    {
+      DxLib::MV1TerminateCollInfo(mv1_model,map.second);
+    }
   }
 
   void Mv1Model::Draw()
   {
     // Z バッファを有効化
-    MV1SetUseZBuffer(mv1_model,TRUE);
-    MV1SetWriteZBuffer(mv1_model,TRUE);
-    MV1DrawModel(mv1_model);
+    DxLib::MV1SetUseZBuffer(mv1_model,TRUE);
+    DxLib::MV1SetWriteZBuffer(mv1_model,TRUE);
+    DxLib::MV1DrawModel(mv1_model);
   }
 
   bool Mv1Model::SetPosition(const mymath::Vector4& position)
@@ -52,6 +58,36 @@ namespace model
 
   mymath::Matrix44  Mv1Model::GetMatrix()const
   {
-    return mymath::ToMyMath(MV1GetMatrix(mv1_model));
+    return mymath::ToMyMath(DxLib::MV1GetMatrix(mv1_model));
   };
+
+  bool Mv1Model::SetupAllCollInfo()
+  {
+    int frame_num_max = DxLib::MV1GetFrameNum(mv1_model);
+    for( int i = 0; i < frame_num_max; i++ )
+    {
+      DxLib::MV1SetupCollInfo(mv1_model,i);
+      std::string frame_name = DxLib::MV1GetFrameName(mv1_model,i);
+      collision_flame.insert(std::make_pair(frame_name,i));
+    }
+
+    return true;
+  };
+  int Mv1Model::AttachAnim(int anim_index,int anim_src_mhandle,int name_check)
+  {
+    return DxLib::MV1AttachAnim(mv1_model,anim_index,anim_src_mhandle,name_check);
+  }
+
+  void Mv1Model::SetVectorAnimationNameAndTime()
+  {
+    int total_anime_num = DxLib::MV1GetAnimNum(mv1_model);
+    for( int i = 0; i < total_anime_num; i++ )
+    {
+      std::string anime_name = { DxLib::MV1GetAnimName(mv1_model,i) };
+      float anim_play_time = DxLib::MV1GetAnimTotalTime(mv1_model,i);
+      auto name_and_time = std::make_tuple(anime_name,anim_play_time);
+      animation_name_and_time_vector.push_back(name_and_time);
+    }
+  };
+
 }

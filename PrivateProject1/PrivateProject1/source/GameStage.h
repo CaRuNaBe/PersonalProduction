@@ -8,9 +8,9 @@
 #pragma once
 #include "AppFrame.h"
 #include "string"
-#include "ObjectBase3d.h"
+#include "GameObject.h"
 #include "ModeGame.h"
-class GameStage : public ObjectBase3d
+class GameStage : public GameObject
 {
 public:
   /** コンストラクタ */

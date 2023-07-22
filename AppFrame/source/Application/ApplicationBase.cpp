@@ -44,45 +44,45 @@ bool ApplicationBase::Initialize()
   /** DXライブラリの初期化 */
   if( AppWindowed() )
   {
-    ChangeWindowMode(TRUE);/** ウィンドウモードに指定する */
+    DxLib::ChangeWindowMode(TRUE);/** ウィンドウモードに指定する */
   }
   /** zバッファのbit深度を変更 */
-  SetZBufferBitDepth(Z_BUFFER_BIT_DEPTH);
+  DxLib::SetZBufferBitDepth(Z_BUFFER_BIT_DEPTH);
   /** 画面サイズセット */
-  SetGraphMode(DispSizeW(),DispSizeH(),COLOR_BIT_DEPTH);
+  DxLib::SetGraphMode(DispSizeW(),DispSizeH(),COLOR_BIT_DEPTH);
 
-  SetWaitVSyncFlag(TRUE);
-  SetAlwaysRunFlag(TRUE);
-
-  if( DxLib_Init() == -1 )
+  DxLib::SetWaitVSyncFlag(TRUE);
+ // SetAlwaysRunFlag(TRUE);
+  DxLib::SetUseLighting(FALSE);
+  if( DxLib::DxLib_Init() == -1 )
   {
     /** エラーが起きたら直ちに終了 */
     return false;
   }
- 
 
   /** 描画先画面を裏画面にセット */
-  SetDrawScreen(DX_SCREEN_BACK);
+  DxLib::SetDrawScreen(DX_SCREEN_BACK);
 
   /** Ｚバッファを有効にする */
-  SetUseZBuffer3D(TRUE);
+  DxLib::SetUseZBuffer3D(TRUE);
 
   /** Ｚバッファへの書き込みを有効にする */
-  SetWriteZBuffer3D(TRUE);
-  SetBackgroundColor(0,192,255);
+  DxLib::SetWriteZBuffer3D(TRUE);
+  /** 後ろの画面を青っぽくする */
+  DxLib::SetBackgroundColor(0,192,255);
   /** モードサーバの初期化 */
   base_server = std::make_shared<GameServerShared<GameBase>>();
 
   is_game_end = false;
 
   /** システム時間を取得しておく */
-  time = GetNowCount();
+  time = DxLib::GetNowCount();
 
   /** 最初の経過時間は0.00000f 秒にしておく */
   delta_time = 0.00000f;
 
   /** FPS計測関係の初期化 */
-  fps_check_time = GetNowCount();
+  fps_check_time = DxLib::GetNowCount();
   fps = 0;
   fps_counter = 0;
 
@@ -93,7 +93,7 @@ bool ApplicationBase::Initialize()
 bool ApplicationBase::Terminate()
 {
   /** DXライブラリ開放 */
-  DxLib_End();
+  DxLib::DxLib_End();
   return true;
 }
 
@@ -113,30 +113,30 @@ bool ApplicationBase::Update()
 bool ApplicationBase::Draw()
 {
   /** フォグ設定 */
-  SetFogEnable(TRUE);
-  SetFogColor(255,255,255);
-  SetFogStartEnd(55.f,800.f);
+  //SetFogEnable(TRUE);
+  //SetFogColor(255,255,255);
+  //SetFogStartEnd(1000.f,800.f);
   /** 画面を初期化する */
-  ClearDrawScreen();
+  DxLib::ClearDrawScreen();
   base_server->Draw();
   /** 0,0,0を中心に線を引く */
   {
     float linelength = 1000000.f;
-    VECTOR v = { 0, 0, 0 };
-    DrawLine3D(VAdd(v,VGet(-linelength,0,0)),VAdd(v,VGet(linelength,0,0)),GetColor(255,0,0));
-    DrawLine3D(VAdd(v,VGet(0,-linelength,0)),VAdd(v,VGet(0,linelength,0)),GetColor(0,255,0));
-    DrawLine3D(VAdd(v,VGet(0,0,-linelength)),VAdd(v,VGet(0,0,linelength)),GetColor(0,0,255));
+    DxLib::VECTOR v = { 0, 0, 0 };
+    DxLib::DrawLine3D(VAdd(v,DxLib::VGet(-linelength,0,0)),DxLib::VAdd(v,DxLib::VGet(linelength,0,0)),DxLib::GetColor(255,0,0));
+    DxLib::DrawLine3D(VAdd(v,DxLib::VGet(0,-linelength,0)),DxLib::VAdd(v,DxLib::VGet(0,linelength,0)),DxLib::GetColor(0,255,0));
+    DxLib::DrawLine3D(VAdd(v,DxLib::VGet(0,0,-linelength)),DxLib::VAdd(v,DxLib::VGet(0,0,linelength)),DxLib::GetColor(0,0,255));
   }
   FpsDraw();
   /** 裏画面の内容を表画面に反映させる */
-  ScreenFlip();
+  DxLib::ScreenFlip();
   return true;
 }
 
 void ApplicationBase::DeltaTimeAndFpsMeasure()
 {
   /** 現在のシステム時間を取得 */
-  now_time = GetNowCount();
+  now_time = DxLib::GetNowCount();
 
   /** 前回取得した時間からの経過時間を秒に変換してセット */
   /** (GetNowCount で取得できる値はマイクロ秒単位なので 1000 で割ることで秒単位になる) */
@@ -157,7 +157,7 @@ void ApplicationBase::DeltaTimeAndFpsMeasure()
 
 void ApplicationBase::FpsDraw()
 {
-  DrawFormatString(0,0,GetColor(255,255,255),"fps:%d",fps);
+  DxLib::DrawFormatString(0,0,DxLib::GetColor(255,255,255),"fps:%d",fps);
 };
 
 bool ApplicationBase::AppWindowed()

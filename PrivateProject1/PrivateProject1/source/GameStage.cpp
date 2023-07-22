@@ -8,8 +8,10 @@
 #include "GameStage.h"
 
 GameStage::GameStage(ApplicationBase& game,int layer,ModeGame& mode,std::string filename)
-  :ObjectBase3d(game,layer,mode,filename)
-{};
+  :GameObject(game,layer,mode,filename)
+{
+  modele.SetupAllCollInfo();
+};
 
 GameStage::~GameStage()
 {};

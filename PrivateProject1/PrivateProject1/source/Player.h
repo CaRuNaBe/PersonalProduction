@@ -7,9 +7,9 @@
 #pragma once
 #include "AppFrame.h"
 #include "string"
-#include "ObjectBase3d.h"
+#include "GameObject.h"
 #include "ModeGame.h"
-class Player : public ObjectBase3d
+class Player : public GameObject
 {
 public:
   /** コンストラクタ */
@@ -23,15 +23,15 @@ public:
   /** デバッグ用描画関数 */
   virtual bool DebugDraw();
 private:
-  enum class Status
-  {
-    WAIT,
-    MOVE
-  };
-  /** このプレイヤーの状態 */
-  Status status;
+  /** 床の上に立っていたらtrue */
+  bool is_stand;
+  /** プレイヤーのyの向き */
+  float velocity_y;
   /** カメラ動かすための関数 */
   void CameraMoves();
+  /** ジャンプと重力処理 */
+  void Jump();
+  mymath::Vector4 old_player_velocity;
 };
 
 

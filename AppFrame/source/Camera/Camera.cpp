@@ -11,37 +11,39 @@
 #include "MyMath/MyMathUtility.h"
 namespace
 {
+#undef NEAR
+#undef FAR
   constexpr auto DEFAULT_POSITION_Z = -300.0f;
   constexpr auto DEFAULT_POSITION_Y = 100.0f;
   constexpr auto DEFAULT_UP_Y = 1.0f;
 #undef DEFAULT_NEAR
-  constexpr auto DEFAULT_NEAR = 1.0f;
+  constexpr auto NEAR = 1.0f;
 #undef DEFAULT_FAR
-  constexpr auto DEFAULT_FAR = 100000000.0f;
+  //constexpr auto FAR = 100000000.0f;‰æ–Ê‚¿‚ç‚Â‚«
+  constexpr auto FAR = 16777218.0f;
   constexpr auto DEFAULT_FOV_ANGLE = 60.0f;
 }
 Camera::Camera(int screen_width,int screen_height)
-  :near_value { DEFAULT_NEAR }
-  ,far_value { DEFAULT_FAR }
+  :near_value { NEAR }
+  ,far_value { FAR }
   ,fov { mymath::MyMathUtility::DegreeToRadian(DEFAULT_FOV_ANGLE) }
   ,aspect { static_cast<float>(screen_height) / static_cast<float>(screen_width) }
   ,position { 0.0f,DEFAULT_POSITION_Y,DEFAULT_POSITION_Z }
   ,target { 0.0f,0.0f,0.0f }
   ,up { 0.0f,1.0f,0.0f }
-{};
+{
+
+};
 
 bool Camera::Update()
 {
-
-
   auto view_matrix = GetViewMatrix();
 
-  SetCameraViewMatrix(ToDX(view_matrix));
-  //SetCameraPositionAndTarget_UpVecY(ToDX(position),ToDX(target));
+  DxLib::SetCameraViewMatrix(ToDX(view_matrix));
+
   auto projection_matrix = GetProjectionMatrix();
 
-  SetupCamera_ProjectionMatrix(ToDX(projection_matrix));
-  //SetCameraNearFar(near_value,far_value);
+  DxLib::SetupCamera_ProjectionMatrix(ToDX(projection_matrix));
   return true;
 }
 
