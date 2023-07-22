@@ -31,7 +31,8 @@ private:
   void CameraMoves();
   /** ジャンプと重力処理 */
   void Jump();
-  mymath::Vector4 old_player_velocity;
+  /** 今の進行方向 */
+  mymath::Vector4 now_player_velocity;
 };
 
 

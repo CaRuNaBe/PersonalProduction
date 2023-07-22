@@ -41,9 +41,10 @@ bool Player::Update()
   player_velocity *= player_speed;
   if( is_stand )
   {
-    old_player_velocity = player_velocity;
+    /** 空中で進行方向を変えられないように */
+    now_player_velocity = player_velocity;
   }
-  position += old_player_velocity;
+  position += now_player_velocity;
 
   /** ジャンプと重力処理 */
   Jump();
