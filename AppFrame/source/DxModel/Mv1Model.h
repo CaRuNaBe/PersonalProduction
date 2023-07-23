@@ -1,6 +1,6 @@
 /*****************************************************************//**
  * \file   Mv1Model.h
- * \brief  dxライブラリのMV!モデルの処理をまとめたクラス定義
+ * \brief  dxライブラリのMV1モデルの処理をまとめたクラス定義
  * \author 阿部健太郎
  * \date   July 2023
  *********************************************************************/
@@ -48,13 +48,17 @@ namespace model
     mymath::Matrix44 GetMatrix()const;
     /** モデルのすべてのフレームに対しコリジョン情報を構築する */
     bool SetupAllCollInfo();
-    /** 	アニメーションをアタッチする */
+
+    /** アニメーションをアタッチする */
     int AttachAnim(int anim_index,int anim_src_mhandle = -1,int name_check = 1);
+    /** アニメーションをデタッチする */
+    int DetachAnim(int attach_index);
+    /** アタッチしているアニメーションの再生時間を設定する */
+    int SetAttachAnimTime(int attach_index,float time);
+    /** アタッチしているアニメーションの総時間を取得する */
+    float GetAttachAnimTotalTime(int attach_index);
   private:
-    /** モデルのアニメーションの名前と総再生時間をvectorに入れる */
-    void SetVectorAnimationNameAndTime();
     int mv1_model;
-    std::vector<std::tuple<std::string,float>> animation_name_and_time_vector;
     std::map<std::string,int> collision_flame;
   };
 }

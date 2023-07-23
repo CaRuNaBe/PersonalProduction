@@ -1,6 +1,6 @@
 /*****************************************************************//**
  * \file   Mv1Model.cpp
- * \brief  dxライブラリのMV!モデルの処理をまとめたクラス宣言
+ * \brief  dxライブラリのMV1モデルの処理をまとめたクラス宣言
  * \author 阿部健太郎
  * \date   July 2023
  *********************************************************************/
@@ -15,7 +15,6 @@ namespace model
   Mv1Model::Mv1Model(std::string filename)
   {
     mv1_model = DxLib::MV1LoadModel(filename.c_str());
-    SetVectorAnimationNameAndTime();
   }
 
   Mv1Model::~Mv1Model()
@@ -73,21 +72,24 @@ namespace model
 
     return true;
   };
+
   int Mv1Model::AttachAnim(int anim_index,int anim_src_mhandle,int name_check)
   {
     return DxLib::MV1AttachAnim(mv1_model,anim_index,anim_src_mhandle,name_check);
   }
 
-  void Mv1Model::SetVectorAnimationNameAndTime()
+  int Mv1Model::DetachAnim(int attach_index)
   {
-    int total_anime_num = DxLib::MV1GetAnimNum(mv1_model);
-    for( int i = 0; i < total_anime_num; i++ )
-    {
-      std::string anime_name = { DxLib::MV1GetAnimName(mv1_model,i) };
-      float anim_play_time = DxLib::MV1GetAnimTotalTime(mv1_model,i);
-      auto name_and_time = std::make_tuple(anime_name,anim_play_time);
-      animation_name_and_time_vector.push_back(name_and_time);
-    }
+    return DxLib::MV1DetachAnim(mv1_model,attach_index);
   };
 
+  int Mv1Model::SetAttachAnimTime(int attach_index,float time)
+  {
+    return DxLib::MV1SetAttachAnimTime(mv1_model,attach_index,time);
+  };
+
+  float Mv1Model::GetAttachAnimTotalTime(int attach_index)
+  {
+    return DxLib::MV1GetAttachAnimTotalTime(mv1_model,attach_index);
+  };
 }

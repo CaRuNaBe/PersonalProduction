@@ -6,6 +6,7 @@
  *********************************************************************/
 #include "ApplicationBase.h"
 #include "DxLib.h"
+#include "MyMath/DxMyMathUtility.h"
 ApplicationBase* ApplicationBase::lp_instance = NULL;
 
 namespace
@@ -52,7 +53,7 @@ bool ApplicationBase::Initialize()
   DxLib::SetGraphMode(DispSizeW(),DispSizeH(),COLOR_BIT_DEPTH);
 
   DxLib::SetWaitVSyncFlag(TRUE);
- // SetAlwaysRunFlag(TRUE);
+  // SetAlwaysRunFlag(TRUE);
   DxLib::SetUseLighting(FALSE);
   if( DxLib::DxLib_Init() == -1 )
   {
@@ -113,9 +114,9 @@ bool ApplicationBase::Update()
 bool ApplicationBase::Draw()
 {
   /** フォグ設定 */
-  //SetFogEnable(TRUE);
-  //SetFogColor(255,255,255);
-  //SetFogStartEnd(1000.f,800.f);
+  DxLib::SetFogEnable(TRUE);
+  DxLib::SetFogColor(255,255,255);
+  DxLib::SetFogStartEnd(5000.f,100000.f);
   /** 画面を初期化する */
   DxLib::ClearDrawScreen();
   base_server->Draw();
@@ -126,6 +127,14 @@ bool ApplicationBase::Draw()
     DxLib::DrawLine3D(VAdd(v,DxLib::VGet(-linelength,0,0)),DxLib::VAdd(v,DxLib::VGet(linelength,0,0)),DxLib::GetColor(255,0,0));
     DxLib::DrawLine3D(VAdd(v,DxLib::VGet(0,-linelength,0)),DxLib::VAdd(v,DxLib::VGet(0,linelength,0)),DxLib::GetColor(0,255,0));
     DxLib::DrawLine3D(VAdd(v,DxLib::VGet(0,0,-linelength)),DxLib::VAdd(v,DxLib::VGet(0,0,linelength)),DxLib::GetColor(0,0,255));
+  }
+  /** カメラターゲットを中心に短い線を引く */
+  {
+    float linelength = 10.f;
+    DxLib::VECTOR v = mymath::ToDX(camera.GetTarget());
+    DrawLine3D(DxLib::VAdd(v,DxLib::VGet(-linelength,0,0)),DxLib::VAdd(v,DxLib::VGet(linelength,0,0)),DxLib::GetColor(255,0,0));
+    DrawLine3D(DxLib::VAdd(v,DxLib::VGet(0,-linelength,0)),DxLib::VAdd(v,DxLib::VGet(0,linelength,0)),DxLib::GetColor(0,255,0));
+    DrawLine3D(DxLib::VAdd(v,DxLib::VGet(0,0,-linelength)),DxLib::VAdd(v,DxLib::VGet(0,0,linelength)),DxLib::GetColor(0,0,255));
   }
   FpsDraw();
   /** 裏画面の内容を表画面に反映させる */
